@@ -163,86 +163,7 @@ let expires = "; expires=" + date.toGMTString();
     let domain = "." + window.location.hostname;
 let forceExpireDate = "Wed, 31 Oct 2012 08:50:17 GMT";
 
-function getCookie(name) {
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
 
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-function checkForAgeCookie() {
-  let cookieValue = getCookie(ageConfirmedCookie);
-
-        if (cookieValue == null) {
-            ageConfirmed;
-          
-            const addStyle = (() => {
-                const style = document.createElement('style');
-                document.head.append(style);
-                return (styleString) => style.textContent = styleString;
-            })();
-
-            addStyle(`#onetrust-banner-sdk { display: none; }`);
-        } else if (cookieValue && cookieValue == "YES") {
-            ageConfirmed = true;
-        } else if (cookieValue && cookieValue == "NO") {
-  ageConfirmed = false;
-}
-    }
-
-function ageGate() {
-  if (!getCookie(ageConfirmedCookie)) {
-    document.getElementById("age-gate").removeAttribute("style");
-  } else {
-    document.getElementById("age-gate").style.display = "none";
-  }
-}
-
-function confirmedAge(value) {
-  document.cookie =
-    ageConfirmedCookie +
-    "=" +
-    value +
-    expires +
-    ";path=/; Samesite=Lax;domain=" +
-    domain +
-    ";";
-
-  if (value == "YES") {
-/*    document.cookie =
-      "OptanonConsent" +
-      "=" +
-      value +
-      forceExpireDate +
-      ";path=/; Samesite=Lax;domain=" +
-      domain +
-      ";";
-*/
-    ageConfirmed = true;
-            location.reload();
-  } else {
-    ageConfirmed = false;
-            let expireCookieValue = getCookie("OptanonConsent"); 
-          // USE THIS LINE FOR TEST 
-          // document.cookie = "OptanonConsent" + "=" + expireCookieValue + ";expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/; Samesite=Lax;"; //domain=" + domain + ";"; 
-          // USE THIS LINE FOR PROD 
-          document.cookie = "OptanonConsent" + "=" + expireCookieValue + ";expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/; Samesite=Lax;domain=" + domain + ";"; 
-          location.reload(); 
-  }
-
-  document.getElementById("age-gate").style.display = "none";
-}
-
-window.geofeed = function (options) {
-	var country = options.country.toString();
-	var state = options.state.toString();
-	
-	if (country == "US") {
-		checkForAgeCookie();
-		setTimeout(ageGate, 500);
-	}
-	
-};
 
 var json = document.createElement("script");
 json.setAttribute(
@@ -439,8 +360,8 @@ document.head.appendChild(json);
 <!-- Age Gate Code end -->
 
 <!-- OneTrust Cookies Consent Notice start -->
-<script type="text/javascript" src="https://cdn.cookielaw.org/consent/7367a3327-760a-447f-b1d0-83c79160f188/OtAutoBlock.js"></script>
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="367a3327-760a-447f-b1d0-83c79160f188"></script>
+<!-- <script type="text/javascript" src="https://cdn.cookielaw.org/consent/7367a3327-760a-447f-b1d0-83c79160f188/OtAutoBlock.js"></script>
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="367a3327-760a-447f-b1d0-83c79160f188"></script> -->
 <script type="text/javascript">
 function OptanonWrapper() {
 if (!getCookie('_ageConfirmed')) {
@@ -759,7 +680,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 </section>
 </div>
 <footer>
-	<div style="padding: 20px; background-image: url(./img/cairn2.jpg); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+	<div style="padding: 20px; background-image: url(./img/cairn2.png); display: flex; flex-direction: column; justify-content: center; align-items: center;">
 		<img style="margin: auto; align-self: center;;" src="./img/logo.png" >
 		<p style="text-align: center; color: #fff; stroke: #000;">Che tu possa perderti in questo mondo, godendo di tutto ciò che ha da offrire!</p>
 	</div>
